@@ -7,5 +7,4 @@ export const site = {
     'IT service delivery by day, homelab tinkerer by night. Projects, experiments, and the occasional brain dump.',
   email: 'gazsouthern84@gmail.com',
   github: 'https://github.com/gazaka',
-  x: 'https://x.com/gazaka',
 };
