@@ -16,9 +16,9 @@ Some of the scenarios read like history. Others still read like science
 fiction, and I suspect the unsettling part is not knowing which pile
 they'll end up in.
 
-No grand review yet, I'm only a couple of chapters in. But seven years
-was apparently the correct amount of time to leave it: the book aged
-into a better one while I ignored it.
+No review yet, I'm only a couple of chapters in. But seven years
+was the correct amount of time to leave it: the book aged into a better
+one while I ignored it? Guess I will find out.
 
 (Housekeeping note: this post is also a test that the publishing
 pipeline works — if you can read this, it does, and this sentence

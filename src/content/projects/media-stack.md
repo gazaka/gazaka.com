@@ -2,7 +2,7 @@
 name: The media stack
 tagline: The home media server — streaming, requests and automation, treated as production by the whole household.
 status: live
-stack: [Docker, Linux, Cloudflare Tunnel]
+stack: [Docker, Linux]
 order: 4
 ---
 
