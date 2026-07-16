@@ -1,0 +1,40 @@
+# Server-side deployment for gazaka.com
+#
+# One-time setup on the server:
+#   1. docker login ghcr.io -u gazaka   (PAT with read:packages scope)
+#   2. mkdir -p ~/gazaka.com-deploy && copy this file there
+#   3. docker compose up -d
+#   4. Point cloudflared at http://localhost:8085 (see README)
+#
+# After that, publishing = git push. GitHub Actions builds the image,
+# watchtower pulls it within ~2 minutes. You never touch the server.
+
+services:
+  gazaka-web:
+    image: ghcr.io/gazaka/gazaka.com:latest
+    container_name: gazaka-web
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    ports:
+      # Bound to localhost only — the sole way in from outside is cloudflared.
+      - "127.0.0.1:8085:8080"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: gazaka-watchtower
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Reuses the docker login from step 1 to pull the private image.
+      - ${HOME}/.docker/config.json:/config.json:ro
+    command: --label-enable --cleanup --interval 120
