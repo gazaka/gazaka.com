@@ -3,3 +3,6 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# Local-only deploy reference — reveals tunnel/ingress details, never commit
+deploy/cloudflared-config.yml
