@@ -1,6 +1,6 @@
 ---
 name: The media stack
-tagline: The home media server.
+tagline: The home media server — streaming, requests and automation, treated as production by the whole household.
 status: live
 stack: [Docker, Linux, Cloudflare Tunnel]
 order: 4

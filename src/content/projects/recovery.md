@@ -1,6 +1,6 @@
 ---
 name: Recovery
-tagline: A journalling app for addiction recovery.
+tagline: A journalling app for addiction recovery — quiet, private, and built to actually help.
 status: in progress
 stack: [PWA, JavaScript]
 order: 3

@@ -1,6 +1,6 @@
 ---
 name: Echoes
-tagline: An incremental game.
+tagline: An incremental game, built because I love incremental games and wanted one that was mine.
 status: in progress
 stack: [JavaScript, HTML/CSS]
 order: 2

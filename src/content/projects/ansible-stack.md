@@ -1,6 +1,6 @@
 ---
 name: Ansible stack
-tagline: Teaching the homelab to rebuild itself.
+tagline: Teaching the homelab to rebuild itself — infrastructure as code, learned the honest way.
 status: in progress
 stack: [Ansible, YAML, Linux]
 order: 5

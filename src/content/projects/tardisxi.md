@@ -1,6 +1,6 @@
 ---
 name: TardisXI
-tagline: A private Final Fantasy XI server.
+tagline: A private Final Fantasy XI server, run as a long-form lesson in how things actually work.
 status: live
 stack: [Lua, MySQL, C++, Linux, Docker]
 order: 1
