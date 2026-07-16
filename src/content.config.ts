@@ -16,7 +16,7 @@ const projects = defineCollection({
   schema: z.object({
     name: z.string(),
     tagline: z.string(),
-    status: z.enum(['live', 'in progress', 'brewing', 'archived']),
+    status: z.enum(['live', 'in progress', 'archived']),
     stack: z.array(z.string()),
     order: z.number().default(99),
     hidden: z.boolean().default(false),

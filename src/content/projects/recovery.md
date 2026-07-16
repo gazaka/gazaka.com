@@ -1,7 +1,7 @@
 ---
 name: Recovery
 tagline: A journalling tool for addiction recovery — quiet, private, and built to actually help.
-status: brewing
+status: in progress
 stack: [PWA, JavaScript]
 order: 3
 ---
