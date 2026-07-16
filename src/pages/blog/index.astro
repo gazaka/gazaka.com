@@ -13,28 +13,23 @@ const fmt = (d: Date) =>
   d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' });
 ---
 
-<Base title={`Writing — ${site.title}`} description="Brain dumps from the homelab.">
-  <Nav current="writing" />
+<Base title={`Writing — ${site.title}`} description="Occasional notes from the homelab.">
+  <Nav />
 
-  <header class="wrap head">
-    <p class="kicker"><em>∗</em> Writing</p>
-    <h1>Brain dumps.</h1>
-    <p class="prose sub">
-      No schedule, no niche, no newsletter. A public notebook — servers,
-      databases, games, homebrew, and whatever else has been rattling around.
+  <main>
+    <h1>Writing</h1>
+    <p>
+      Occasional notes. No schedule, no niche, no newsletter. Servers,
+      databases, games, homebrew, whatever's been rattling around.
     </p>
-  </header>
-
-  <main class="wrap">
-    <ul class="posts">
+    <ul>
       {
         posts.map((post) => (
           <li>
-            <a href={`/blog/${post.id}`}>
-              <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
-              <span class="post-title">{post.data.title}</span>
-              {post.data.summary && <span class="post-summary">{post.data.summary}</span>}
-            </a>
+            <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time> —
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            {post.data.summary && <br />}
+            {post.data.summary && <small class="muted">{post.data.summary}</small>}
           </li>
         ))
       }
@@ -45,68 +40,7 @@ const fmt = (d: Date) =>
 </Base>
 
 <style>
-  .head {
-    padding-block: clamp(4rem, 10vh, 7rem) 3rem;
-  }
-
-  .head h1 {
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    margin-block: 1.25rem 1.5rem;
-  }
-
-  .sub {
-    max-width: 48ch;
-  }
-
-  .posts {
-    list-style: none;
-  }
-
-  .posts a {
-    display: grid;
-    grid-template-columns: 7.5rem 1fr;
-    gap: 0.35rem 2rem;
-    padding-block: 1.6rem;
-    border-top: 1px solid var(--line);
-    align-items: baseline;
-  }
-
-  .posts li:last-child a {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .posts time {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-  }
-
-  .post-title {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .post-summary {
-    grid-column: 2;
-    color: var(--ink-dim);
-    font-size: 0.92rem;
-    max-width: 60ch;
-  }
-
-  .posts a:hover .post-title {
-    color: var(--accent);
-  }
-
-  @media (max-width: 760px) {
-    .posts a {
-      grid-template-columns: 1fr;
-      gap: 0.4rem;
-    }
-
-    .post-summary {
-      grid-column: 1;
-    }
+  li {
+    margin-top: 0.9rem;
   }
 </style>

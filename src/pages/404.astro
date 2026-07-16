@@ -6,31 +6,12 @@ import Footer from '../components/Footer.astro';
 
 <Base title="404 — gazaka.com">
   <Nav />
-  <main class="wrap">
-    <p class="kicker"><em>404</em> Not found</p>
-    <h1>This one broke.<br /><em>I probably haven't fixed it yet.</em></h1>
-    <p class="prose">
-      Whatever was meant to be here either never existed or wandered off.
-      <a href="/">Back to the front door →</a>
+  <main>
+    <h1>404</h1>
+    <p>
+      Whatever was meant to be here either never existed or I broke it.
+      <a href="/">Back to the front page</a>.
     </p>
   </main>
   <Footer />
 </Base>
-
-<style>
-  main {
-    min-height: 55vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.75rem;
-  }
-
-  h1 {
-    font-size: clamp(2.6rem, 7vw, 5rem);
-  }
-
-  h1 em {
-    color: var(--accent);
-  }
-</style>

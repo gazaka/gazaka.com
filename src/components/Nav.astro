@@ -1,18 +1,13 @@
 ---
 interface Props {
-  current?: 'home' | 'writing';
+  home?: boolean;
 }
-const { current = 'home' } = Astro.props;
+const { home = false } = Astro.props;
 ---
 
-<nav class="wrap">
-  <a href="/" class="mark" aria-label="gazaka.com home">
-    gazaka<span>.com</span>
-  </a>
-  <div class="links">
-    <a href="/#projects" class:list={[{ dim: current !== 'home' }]}>Projects</a>
-    <a href="/blog" class:list={[{ dim: current !== 'writing' }]}>Writing</a>
-  </div>
+<nav>
+  {home ? <span>gazaka.com</span> : <a href="/">gazaka.com</a>}
+  <a href="/blog">writing</a>
 </nav>
 
 <style>
@@ -20,35 +15,11 @@ const { current = 'home' } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-block: 1.75rem;
-    position: relative;
-    z-index: 10;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
   }
 
-  .mark {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-  }
-
-  .mark span {
-    color: var(--ink-faint);
-  }
-
-  .links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .links a {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .links a.dim {
-    color: var(--ink-dim);
+  nav span {
+    color: var(--muted);
   }
 </style>

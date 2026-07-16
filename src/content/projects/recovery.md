@@ -1,15 +1,12 @@
 ---
 name: Recovery
-tagline: A journalling tool for addiction recovery — quiet, private, and built to actually help.
+tagline: A journalling app for addiction recovery.
 status: in progress
 stack: [PWA, JavaScript]
 order: 3
 ---
 
-An idea that matters to me: a self-help journalling app for people working
-through addiction. No feeds, no streaks weaponised against you, no audience —
-just a private place to write things down and see how far you've come.
-
-It's early days, and I want to get it right rather than get it done. This one
-is less about the tech and more about building something genuinely useful for
-people on a hard road.
+A self-help journalling app for people working through addiction. Private by
+design: no feeds, no streaks, no audience. Just a place to write things down
+and see how far you've come. This one matters to me, so I'd rather get it
+right than get it done.

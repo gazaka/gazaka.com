@@ -14,510 +14,76 @@ const renderedProjects = await Promise.all(
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 5);
 
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' });
 ---
 
 <Base>
-  <Nav current="home" />
-
-  <header class="hero wrap">
-    <p class="kicker hero-in" style="--d: 0s"><em>▍</em> Gareth Southern · gazaka.com</p>
-    <h1 class="hero-in" style="--d: 0.15s">
-      Gaz. <em>aka.</em> Gazaka.
-    </h1>
-    <p class="lede prose hero-in" style="--d: 0.3s">
-      IT service delivery by day. The rest of the time I build, break, and fix
-      things on this domain — mostly to find out how they actually work.
-    </p>
-    <p class="scroll-hint hero-in" style="--d: 0.55s" aria-hidden="true">scroll ↓</p>
-  </header>
+  <Nav home />
 
   <main>
-    <section class="wrap section reveal" id="about">
-      <p class="kicker"><em>01</em> Who I am</p>
-      <div class="about-grid">
-        <div class="prose">
-          <p>
-            My first career was <strong>fourteen years in banking</strong>, which is
-            where I learned that patience and customer service are technical skills.
-            Then I did the thing people are always told is hard: switched careers,
-            taught myself IT, and never really stopped.
+    <h1>Gareth Southern</h1>
+    <p class="muted">Gaz, aka Gazaka. That's the whole joke.</p>
+
+    <p>
+      I work in IT service delivery. At home I run a small pile of self-hosted
+      services on this domain and spend a lot of my spare time building,
+      breaking and fixing them. This site is the front door: the things I've
+      made, and some notes along the way.
+    </p>
+
+    <h2 id="about">About</h2>
+    <p>
+      I spent fourteen years in banking before switching to IT. Self-taught,
+      then made official with an NVQ Level 3 as an infrastructure technician.
+      I've also got an NVQ in financial services and a CompTIA A+ that expired
+      years ago, which I'm choosing to still be proud of.
+    </p>
+    <p>
+      The day job is service delivery: endpoints and mobile devices, Microsoft
+      365, ticketing and ITSM tooling. Keeping people working, mostly
+      invisibly.
+    </p>
+    <p>
+      The rest is tinkering. My method, honestly stated: I dabble, I break
+      things, I get confused, and I keep going until it's good enough. Lately
+      that includes learning to use AI properly as a tool rather than a party
+      trick. Away from a terminal I homebrew, play games, and learn things for
+      no reason other than wanting to know them.
+    </p>
+
+    <h2 id="projects">Projects</h2>
+    <p class="muted">
+      All self-hosted here on the homelab. Shown, not linked.
+    </p>
+    {
+      renderedProjects.map((p) => (
+        <section>
+          <h3>{p.data.name}</h3>
+          <p class="muted">
+            {p.data.status} · {p.data.stack.join(', ')}
           </p>
-          <p>
-            These days I work in <strong>IT service delivery</strong>. The
-            day-to-day world of endpoint and mobile device management,
-            Microsoft&nbsp;365, ITSM and ticketing tooling, and the bespoke
-            systems every business quietly depends on — the unglamorous
-            plumbing that everything else runs on.
-          </p>
-          <p>
-            After hours is where the fun lives. I run a small fleet of self-hosted
-            services on this domain, and I've been leaning hard into
-            <strong>AI as a tool</strong> — not as a party trick, but as a genuine
-            multiplier for someone who learns by doing.
-          </p>
-        </div>
-        <aside class="facts" aria-label="Qualifications">
-          <h3>On paper</h3>
-          <ul>
-            <li>NVQ Level 3 — Infrastructure Technician</li>
-            <li>NVQ Level 3 — Providing Financial Services</li>
-            <li>CompTIA A+ <span>(retired, honestly noted)</span></li>
-            <li>Everything else — self-taught <span>(ongoing, forever)</span></li>
-          </ul>
-        </aside>
-      </div>
+          <p.Content />
+        </section>
+      ))
+    }
 
-      <blockquote class="ethos reveal">
-        <p>
-          “I dabble, try, break, get confused, tinker, fix, break more — and
-          eventually get to a point where it's <em>good enough</em>.”
-        </p>
-        <cite>— my entire methodology, honestly stated</cite>
-      </blockquote>
-    </section>
-
-    <section class="wrap section" id="projects">
-      <p class="kicker reveal"><em>02</em> Things I've built</p>
-      <ol class="projects">
-        {
-          renderedProjects.map((p, i) => (
-            <li class="project reveal">
-              <div class="project-head">
-                <span class="index">{String(i + 1).padStart(2, '0')}</span>
-                <h2>{p.data.name}</h2>
-                <span class:list={['status', p.data.status.replace(' ', '-')]}>
-                  {p.data.status}
-                </span>
-              </div>
-              <p class="tagline">{p.data.tagline}</p>
-              <div class="prose body">
-                <p.Content />
-              </div>
-              <ul class="stack" aria-label="Technology">
-                {p.data.stack.map((t) => (
-                  <li>{t}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <section class="wrap section" id="journey">
-      <p class="kicker reveal"><em>03</em> The road so far</p>
-      <ol class="journey">
-        <li class="reveal">
-          <span class="era">Act I</span>
-          <div>
-            <h3>Banking, fourteen years of it</h3>
-            <p>
-              A long first career in financial services. It taught me how to talk
-              to people having a bad day — a skill that turns out to transfer
-              perfectly to IT support.
-            </p>
-          </div>
-        </li>
-        <li class="reveal">
-          <span class="era">Act II</span>
-          <div>
-            <h3>The switch</h3>
-            <p>
-              Self-taught my way into technology, made it official with an NVQ in
-              infrastructure, and discovered that "how does this work?" is a
-              question I never get tired of asking.
-            </p>
-          </div>
-        </li>
-        <li class="reveal">
-          <span class="era">Act III</span>
-          <div>
-            <h3>Service delivery</h3>
-            <p>
-              The day job: endpoints and mobile devices, Microsoft&nbsp;365,
-              ticketing and ITSM tooling, and the daily, mostly invisible work
-              of keeping people working. Unglamorous, essential, and a constant
-              education.
-            </p>
-          </div>
-        </li>
-        <li class="reveal">
-          <span class="era">Now</span>
-          <div>
-            <h3>The homelab years</h3>
-            <p>
-              A game server, a game, a journalling app in the making, and a
-              growing conviction that the best way to understand anything is to
-              host it yourself and see what breaks. Also: homebrewing, gaming,
-              and learning for its own sake.
-            </p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <section class="wrap section" id="writing">
-      <p class="kicker reveal"><em>04</em> Brain dumps</p>
-      <ul class="posts">
-        {
-          posts.map((post) => (
-            <li class="reveal">
-              <a href={`/blog/${post.id}`}>
-                <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
-                <span class="post-title">{post.data.title}</span>
-                {post.data.summary && <span class="post-summary">{post.data.summary}</span>}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-      <a class="all-posts reveal" href="/blog">All posts →</a>
-    </section>
+    <h2 id="writing">Writing</h2>
+    <p>Occasional notes. No schedule, no niche.</p>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time> —
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <p><a href="/blog">All posts</a></p>
   </main>
 
   <Footer />
 </Base>
-
-<style>
-  /* ---------- hero ---------- */
-  .hero {
-    min-height: min(88vh, 52rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-block: 4rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(3.4rem, 11vw, 8.5rem);
-    margin-block: 1.5rem 2rem;
-  }
-
-  .hero h1 em {
-    color: var(--accent);
-    padding-inline: 0.06em;
-  }
-
-  .lede {
-    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-    max-width: 44ch;
-  }
-
-  .scroll-hint {
-    margin-top: auto;
-    padding-top: 3rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  .hero-in {
-    opacity: 0;
-    transform: translateY(18px);
-    animation: hero-in 1s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-    animation-delay: var(--d, 0s);
-  }
-
-  @keyframes hero-in {
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  html.no-js .hero-in {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-in {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  /* ---------- sections ---------- */
-  .section {
-    padding-block: clamp(4rem, 9vh, 7.5rem);
-    border-top: 1px solid var(--line);
-  }
-
-  .section > .kicker {
-    margin-bottom: 3rem;
-  }
-
-  /* ---------- about ---------- */
-  .about-grid {
-    display: grid;
-    grid-template-columns: minmax(0, var(--measure)) 1fr;
-    gap: clamp(2.5rem, 6vw, 6rem);
-    align-items: start;
-  }
-
-  .facts {
-    border-left: 1px solid var(--line-strong);
-    padding-left: 1.75rem;
-    max-width: 24rem;
-  }
-
-  .facts h3 {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 1.25rem;
-  }
-
-  .facts ul {
-    list-style: none;
-    display: grid;
-    gap: 0.9rem;
-    font-size: 0.92rem;
-    color: var(--ink-dim);
-  }
-
-  .facts span {
-    color: var(--ink-faint);
-    font-size: 0.85em;
-  }
-
-  .ethos {
-    margin-top: clamp(3.5rem, 8vh, 6rem);
-    max-width: 46ch;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .ethos p {
-    font-family: var(--serif);
-    font-size: clamp(1.5rem, 3.2vw, 2.2rem);
-    line-height: 1.3;
-    color: var(--ink);
-  }
-
-  .ethos em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .ethos cite {
-    display: block;
-    margin-top: 1.5rem;
-    font-family: var(--mono);
-    font-style: normal;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  /* ---------- projects ---------- */
-  .projects {
-    list-style: none;
-    display: grid;
-    gap: 0;
-  }
-
-  .project {
-    padding-block: 3rem;
-    display: grid;
-    gap: 1.1rem;
-  }
-
-  .project + .project {
-    border-top: 1px solid var(--line);
-  }
-
-  .project-head {
-    display: flex;
-    align-items: baseline;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-  }
-
-  .index {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent-dim);
-  }
-
-  .project h2 {
-    font-size: clamp(1.9rem, 4vw, 2.8rem);
-  }
-
-  .status {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid var(--line-strong);
-    border-radius: 999px;
-    color: var(--ink-dim);
-  }
-
-  .status.live {
-    color: var(--accent);
-    border-color: var(--accent-dim);
-  }
-
-  .tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    color: var(--ink-dim);
-    max-width: 55ch;
-  }
-
-  .body {
-    font-size: 0.98rem;
-  }
-
-  .stack {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 0.5rem;
-  }
-
-  .stack li {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--ink-faint);
-    border: 1px solid var(--line);
-    padding: 0.3rem 0.65rem;
-    border-radius: 2px;
-  }
-
-  /* ---------- journey ---------- */
-  .journey {
-    list-style: none;
-    display: grid;
-    gap: 2.75rem;
-    max-width: 46rem;
-  }
-
-  .journey li {
-    display: grid;
-    grid-template-columns: 6rem 1fr;
-    gap: 1.5rem;
-    align-items: start;
-  }
-
-  .era {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent-dim);
-    padding-top: 0.5rem;
-  }
-
-  .journey h3 {
-    font-size: 1.45rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .journey p {
-    color: var(--ink-dim);
-    font-size: 0.97rem;
-    max-width: 55ch;
-  }
-
-  /* ---------- writing ---------- */
-  .posts {
-    list-style: none;
-    display: grid;
-  }
-
-  .posts a {
-    display: grid;
-    grid-template-columns: 7.5rem 1fr;
-    gap: 0.35rem 2rem;
-    padding-block: 1.6rem;
-    border-top: 1px solid var(--line);
-    align-items: baseline;
-  }
-
-  .posts li:last-child a {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .posts time {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-faint);
-  }
-
-  .post-title {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .post-summary {
-    grid-column: 2;
-    color: var(--ink-dim);
-    font-size: 0.92rem;
-    max-width: 60ch;
-  }
-
-  .posts a:hover .post-title {
-    color: var(--accent);
-  }
-
-  .all-posts {
-    display: inline-block;
-    margin-top: 2.5rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    border-bottom: 1px solid var(--line-strong);
-    padding-bottom: 0.35rem;
-  }
-
-  .all-posts:hover {
-    color: var(--accent);
-    border-color: var(--accent-dim);
-  }
-
-  /* ---------- responsive ---------- */
-  @media (max-width: 760px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .facts {
-      border-left: none;
-      border-top: 1px solid var(--line-strong);
-      padding-left: 0;
-      padding-top: 1.75rem;
-    }
-
-    .journey li,
-    .posts a {
-      grid-template-columns: 1fr;
-      gap: 0.4rem;
-    }
-
-    .post-summary {
-      grid-column: 1;
-    }
-  }
-</style>
