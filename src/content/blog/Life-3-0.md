@@ -21,4 +21,5 @@ was apparently the correct amount of time to leave it: the book aged
 into a better one while I ignored it.
 
 (Housekeeping note: this post is also a test that the publishing
-pipeline works — if you can read this, it does.)
+pipeline works — if you can read this, it does, and this sentence
+deployed itself without anyone touching the server.)
