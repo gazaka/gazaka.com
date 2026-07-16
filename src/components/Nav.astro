@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current?: 'home' | 'writing';
+  current?: 'home' | 'writing' | 'cv';
 }
 const { current = 'home' } = Astro.props;
 ---
@@ -11,6 +11,7 @@ const { current = 'home' } = Astro.props;
   </a>
   <div class="links">
     <a href="/#projects" class:list={[{ dim: current !== 'home' }]}>Projects</a>
+    <a href="/cv" class:list={[{ dim: current !== 'cv' }]}>CV</a>
     <a href="/blog" class:list={[{ dim: current !== 'writing' }]}>Writing</a>
   </div>
 </nav>

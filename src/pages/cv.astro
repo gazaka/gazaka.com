@@ -1,0 +1,272 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+const roles = [
+  {
+    title: 'Acting Team Leader — IT Service Delivery',
+    org: 'Social housing provider',
+    dates: 'Sep 2025 – present',
+    points: [
+      'Day-to-day leadership support for the IT service desk: coordinating workloads, priorities and deadlines, and acting as escalation point for complex issues.',
+      'Helped introduce more structured ticket-handling processes, improving consistency and visibility across the team.',
+      'Work with internal stakeholders and external suppliers to keep service delivery moving and resolve issues efficiently.',
+      'Monitor service desk performance and trends to support continuous improvement.',
+    ],
+  },
+  {
+    title: 'IT Support Officer — Service Delivery',
+    org: 'Social housing provider',
+    dates: 'Dec 2019 – present',
+    points: [
+      'Deliver day-to-day service desk support across tickets, email and in person; manage incidents, requests and escalations with clear communication throughout.',
+      'Administer Microsoft 365: user access, Teams, SharePoint and OneDrive.',
+      'Supported service improvement work, including the transition between ITSM platforms and ongoing process refinement.',
+      'Onboarding, device deployment and asset tracking; clear user-facing communications for changes and rollouts.',
+    ],
+  },
+  {
+    title: 'IT Infrastructure Technician Apprentice',
+    org: 'Social housing provider',
+    dates: 'Feb 2018 – Dec 2019',
+    points: [
+      'Completed the NVQ Level 3 Infrastructure Technician apprenticeship, earning CompTIA A+ and Microsoft Mobile Management along the way.',
+      'Hands-on experience supporting systems, users and devices in a live environment.',
+    ],
+  },
+  {
+    title: 'Customer Service & Operations Officer',
+    org: 'High-street bank',
+    dates: 'Feb 2004 – Jun 2017',
+    points: [
+      'Thirteen years of customer service in a fast-paced, regulated environment.',
+      'Compliance with data protection, AML and banking regulations; the origin of the patience.',
+    ],
+  },
+];
+
+const skills = [
+  'IT service desk operations',
+  'Incident & request management',
+  'Microsoft 365 administration',
+  'ITSM tools — Halo ITSM, Freshdesk, Remedy',
+  'Service improvement & change support',
+  'Team coordination & leadership',
+  'Supplier coordination',
+  'Onboarding & device management',
+  'Data protection & information security',
+  'Self-hosting, Docker & Linux (the homelab)',
+];
+
+const quals = [
+  'NVQ Level 3 — Infrastructure Technician (2019)',
+  'CompTIA A+ (via apprenticeship, since lapsed)',
+  'Microsoft Mobile Management (via apprenticeship)',
+  'Certificate in Retail Banking — Level 3',
+  'Certificate in Financial Services — Level 3',
+];
+---
+
+<Base
+  title={`CV — ${site.title}`}
+  description="The living CV: IT support and service delivery, a banking first career, and a homelab where the real learning happens."
+>
+  <Nav current="cv" />
+
+  <header class="wrap head">
+    <p class="kicker"><em>∗</em> Curriculum vitae</p>
+    <h1>The living CV.</h1>
+    <p class="prose lede">
+      Thirteen years in banking, a deliberate restart as an apprentice, and a
+      steady climb through IT service delivery. The full story lives on this
+      page; the tidy version fits on two sides of A4.
+    </p>
+    <a class="download" href="/Gareth-Southern-CV.pdf" download>Download the PDF ↓</a>
+  </header>
+
+  <main class="wrap">
+    <section class="section">
+      <p class="kicker"><em>01</em> Profile</p>
+      <div class="prose">
+        <p>
+          An experienced <strong>IT support and service delivery</strong>
+          professional. I came to technology the long way round — a first
+          career in customer-facing banking — and started again from the bottom
+          as an infrastructure apprentice. That route means the service in
+          "service delivery" isn't an afterthought: I've spent my whole working
+          life on the user's side of the desk.
+        </p>
+        <p>
+          Day to day that looks like incident and request management,
+          Microsoft&nbsp;365 administration, ITSM tooling and service desk
+          operations, with a growing amount of team leadership. Off the clock
+          it looks like a homelab full of self-hosted services, because the
+          fastest way I learn is by running things myself and fixing what
+          breaks.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="kicker"><em>02</em> Experience</p>
+      <ol class="roles">
+        {
+          roles.map((r) => (
+            <li>
+              <div class="role-head">
+                <h2>{r.title}</h2>
+                <p class="role-meta">{r.org} · {r.dates}</p>
+              </div>
+              <ul class="prose points">
+                {r.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="section skills-grid">
+      <div>
+        <p class="kicker"><em>03</em> Core skills</p>
+        <ul class="stack">
+          {skills.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="kicker"><em>04</em> On paper</p>
+        <ul class="quals">
+          {quals.map((q) => <li>{q}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <p class="prose fine-note">
+      Employer names, references and the specifics are gladly shared on
+      request — <a href={`mailto:${site.email}`}>email me</a>.
+    </p>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .head {
+    padding-block: clamp(4rem, 10vh, 7rem) 1rem;
+  }
+
+  .head h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    margin-block: 1.25rem 1.5rem;
+  }
+
+  .lede {
+    max-width: 52ch;
+  }
+
+  .download {
+    display: inline-block;
+    margin-top: 2rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+  }
+
+  .download:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .section {
+    padding-block: clamp(3rem, 7vh, 5rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .section > .kicker,
+  .skills-grid .kicker {
+    margin-bottom: 2.25rem;
+  }
+
+  .roles {
+    list-style: none;
+    display: grid;
+    gap: 3rem;
+  }
+
+  .role-head h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .role-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-top: 0.6rem;
+  }
+
+  .points {
+    margin-top: 1rem;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.97rem;
+  }
+
+  .points li::marker {
+    color: var(--accent-dim);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .stack li {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    border: 1px solid var(--line-strong);
+    padding: 0.4rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  .quals {
+    list-style: none;
+    display: grid;
+    gap: 0.9rem;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+  }
+
+  .fine-note {
+    padding-block: 2rem 1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 700px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
