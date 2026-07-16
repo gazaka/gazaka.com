@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#1c1c1a"/>
-  <text x="32" y="45" font-family="system-ui, sans-serif" font-weight="600" font-size="36" fill="#fdfdfb" text-anchor="middle">g</text>
+  <rect width="64" height="64" rx="10" fill="#171410"/>
+  <text x="32" y="46" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="40" fill="#d98352" text-anchor="middle">g</text>
 </svg>

@@ -25,7 +25,7 @@ const fmt = (d: Date) =>
 
   <main>
     <h1>Gareth Southern</h1>
-    <p class="muted">Gaz, aka Gazaka. That's the whole joke.</p>
+    <p class="tagline">Gaz, <em>aka</em> Gazaka. That's the whole joke.</p>
 
     <p>
       I work in IT service delivery. At home I run a small pile of self-hosted
@@ -62,7 +62,7 @@ const fmt = (d: Date) =>
       renderedProjects.map((p) => (
         <section>
           <h3>{p.data.name}</h3>
-          <p class="muted">
+          <p class="meta">
             {p.data.status} · {p.data.stack.join(', ')}
           </p>
           <p.Content />
@@ -87,3 +87,16 @@ const fmt = (d: Date) =>
 
   <Footer />
 </Base>
+
+<style>
+  .tagline {
+    font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
+  .tagline em {
+    color: var(--accent);
+  }
+</style>

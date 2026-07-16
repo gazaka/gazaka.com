@@ -1,23 +1,24 @@
-/* gazaka.com — plain, readable, hand-typed.
-   System fonts, one link colour, no decoration that isn't doing a job. */
+/* gazaka.com — warm, typographic, quietly decorated.
+   Georgia for headings (system serif, no webfonts), one terracotta accent,
+   warm paper / warm dark. Decoration through type and colour, not staging. */
 
 :root {
-  --bg: #fdfdfb;
-  --ink: #1c1c1a;
-  --muted: #6b6b66;
-  --link: #14538c;
-  --line: #e4e4df;
-  --code-bg: #f3f3ee;
+  --bg: #faf7f1;
+  --ink: #24211c;
+  --muted: #71695e;
+  --accent: #a8471f;
+  --line: #e5dfd3;
+  --code-bg: #f1ece2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #151514;
-    --ink: #dedad2;
-    --muted: #93938c;
-    --link: #85b3dd;
-    --line: #2c2c29;
-    --code-bg: #202020;
+    --bg: #171410;
+    --ink: #e4ddd1;
+    --muted: #99917f;
+    --accent: #d98352;
+    --line: #2f2a23;
+    --code-bg: #211d18;
   }
 }
 
@@ -36,27 +37,51 @@ body {
   color: var(--ink);
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 1.0625rem;
-  line-height: 1.65;
-  max-width: 42rem;
+  line-height: 1.7;
+  max-width: 44rem;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 1.75rem 1.25rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 h1 {
-  font-size: 1.7rem;
-  line-height: 1.25;
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+}
+
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 h2 {
-  font-size: 1.3rem;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  font-size: 1.6rem;
+  margin-top: 3.5rem;
+}
+
+/* short accent stroke above each section heading */
+h2::before {
+  content: '';
+  display: block;
+  width: 2.25rem;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 1.1rem;
+  border-radius: 2px;
 }
 
 h3 {
-  font-size: 1.05rem;
-  margin-top: 2rem;
+  font-size: 1.3rem;
+  margin-top: 2.4rem;
 }
 
 p {
@@ -70,17 +95,22 @@ ol {
 }
 
 li {
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+li::marker {
+  color: var(--accent);
 }
 
 a {
-  color: var(--link);
+  color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent);
 }
 
 img {
@@ -94,6 +124,13 @@ small,
   font-size: 0.9rem;
 }
 
+.meta {
+  font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
 hr {
   border: none;
   border-top: 1px solid var(--line);
@@ -102,16 +139,16 @@ hr {
 
 code {
   font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
-  font-size: 0.88em;
+  font-size: 0.85em;
   background: var(--code-bg);
-  padding: 0.1em 0.35em;
+  padding: 0.12em 0.35em;
   border-radius: 3px;
 }
 
 pre {
   background: var(--code-bg);
   padding: 1rem;
-  border-radius: 5px;
+  border-radius: 6px;
   overflow-x: auto;
   margin-top: 1rem;
   line-height: 1.5;
@@ -123,19 +160,21 @@ pre code {
 }
 
 blockquote {
-  border-left: 3px solid var(--line);
-  padding-left: 1rem;
-  color: var(--muted);
+  border-left: 3px solid var(--accent);
+  padding-left: 1.1rem;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.05em;
   margin-top: 1rem;
 }
 
 time {
+  font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
   color: var(--muted);
-  font-size: 0.9rem;
-  font-variant-numeric: tabular-nums;
+  font-size: 0.82rem;
 }
 
 ::selection {
-  background: var(--link);
+  background: var(--accent);
   color: var(--bg);
 }
