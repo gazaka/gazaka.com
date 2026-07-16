@@ -1,10 +1,8 @@
 # Server-side deployment for gazaka.com
 #
-# One-time setup on the server:
-#   1. docker login ghcr.io -u gazaka   (PAT with read:packages scope)
-#   2. mkdir -p ~/gazaka.com-deploy && copy this file there
-#   3. docker compose up -d
-#   4. Point cloudflared at http://localhost:8085 (see README)
+# One-time setup on the server (image and repo are public — no login needed):
+#   1. docker compose -f deploy/docker-compose.yml up -d
+#   2. Point cloudflared at http://localhost:8085 (see README)
 #
 # After that, publishing = git push. GitHub Actions builds the image,
 # watchtower pulls it within ~2 minutes. You never touch the server.
@@ -33,8 +31,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    environment:
+      # Watchtower's bundled client defaults to an API version the daemon
+      # no longer accepts (its image is unmaintained); pin a supported one.
+      - DOCKER_API_VERSION=1.44
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      # Reuses the docker login from step 1 to pull the private image.
-      - ${HOME}/.docker/config.json:/config.json:ro
     command: --label-enable --cleanup --interval 120
